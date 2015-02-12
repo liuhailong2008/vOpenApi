@@ -28,36 +28,40 @@
 2. 采用安全方式传输，则使用调用者的公钥加密。
 ##代码设计
 ###调用方
-'' interface Invoker{
-'' 	void setEndPoint(InvokerEndPoint endPoint);
-'' 	/**
-'' 	* 通过调用EndPoint实现。
-'' 	*/
-'' 	Response get(String api,Object…params);
-'' 	Response post(String api,Object…params);
-'' }
-'' interface InvokerEndPoint{
-'' 	Response invoke(Request request);
-'' }
-'' /** 装饰模式 */
-'' interface SecurityInvokerEndPoint{
-'' 	Response invoke(Request request);
-'' }
+```Java
+ interface Invoker{
+ 	void setEndPoint(InvokerEndPoint endPoint);
+ 	/**
+ 	* 通过调用EndPoint实现。
+ 	*/
+ 	Response get(String api,Object…params);
+ 	Response post(String api,Object…params);
+ }
+ interface InvokerEndPoint{
+ 	Response invoke(Request request);
+ }
+ /** 装饰模式 */
+ interface SecurityInvokerEndPoint{
+ 	Response invoke(Request request);
+ }
+```
 ###发布者
-'' interface OpenApiFilter{
-'' 	void setEndPoint(ExportEndPoint endPoint);
-'' 	/**
-'' 	* 通过调用EndPoint实现。
-'' 	*/
-'' 	HttpServletResponse process(HttpServletRequest request);
-'' }
-'' interface ExportEndPoint{
-'' 	Response export(Request request);
-'' }
-'' /** 装饰模式 */
-'' interface SecurityExportEndPoint{
-'' 	Response export(Request request);
-'' }
-'' interface ExportHandler{
-'' 	Response handle(Object...args);
-'' }
+```Java
+ interface OpenApiFilter{
+ 	void setEndPoint(ExportEndPoint endPoint);
+ 	/**
+ 	* 通过调用EndPoint实现。
+ 	*/
+ 	HttpServletResponse process(HttpServletRequest request);
+ }
+ interface ExportEndPoint{
+ 	Response export(Request request);
+ }
+ /** 装饰模式 */
+ interface SecurityExportEndPoint{
+ 	Response export(Request request);
+ }
+ interface ExportHandler{
+ 	Response handle(Object...args);
+ }
+```
