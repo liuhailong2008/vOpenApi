@@ -1,5 +1,10 @@
 #oAuth 2.0测试
 
+> 编号：OAPI-DESIGN-005
+> 作者：刘海龙
+> 微博：[http://weibo.com/liuhailong2008]
+> 博客：[http://blog.csdn.net/stationxp]
+
 
 ## 授权EntPoint
 
