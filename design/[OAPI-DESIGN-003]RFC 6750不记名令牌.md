@@ -1,6 +1,12 @@
 #RFC 6750不记名令牌
 
+> 编号：OAPI-DESIGN-003
+> 作者：刘海龙
+> 微博：[http://weibo.com/liuhailong2008]
+> 博客：[http://blog.csdn.net/stationxp]
+
 ##含义
+
 oAuth使客户通过令牌而不是资源所有者的凭证来访问受保护资源，在RFC 6749中，访问令牌（access token）被定义为：颁发给客户端代表访问权限的字符串。
 
 不记名令牌（bearer），顾名思义，除令牌本身外，不再验证其他权限。凭借访问令牌即可实现对受控资源的访问，因此，令牌的传输安全就极其重要。
@@ -20,6 +26,7 @@ RFC 6750定义了采用传输层安全（TLS，RFC 5246）在HTTP上使用不记
 b64token = 1 * (ALPHA / DIGIT/"-"/"."/"_"/"~"/"+"/"/") *"="
 credentials = "Bearer" 1*SP b64token
 ```
+
 如：`Bearer mF-9.B5f-4.1Jqm`
 
 ##发送令牌的方式
@@ -32,6 +39,7 @@ GET /resource HTTP/1.1
 Host:resource.server.com
 Authorization: Bearer mF-9.B5f-4.1Jqm
 ```
+
 服务器必须支持此方法。
 
 ###表单编码的主体参数
@@ -43,6 +51,7 @@ Host:resource.server.com
 Content-Type:application/x-www-form-urlencoded
 access_token=mF-9.B5f-4.1Jqm
 ```
+
 除非客户端不能使用第一种方法，才可以用这种方法，而且，必须严格按照要求，符合一定规范（比如：只能用POST方法，主体中只能使用ASCII）。
 服务器可以不支持这种方法。
 
@@ -53,6 +62,7 @@ access_token=mF-9.B5f-4.1Jqm
 ```
 http://resource.server.com/resource?access_token=mF-9.B5f-4.1Jqm
 ```
+
 客户端发送请求时，应发送含有“no-store”选项的Cache-Control头。成功状态下，服务器响应应带有“private”选项的Cache-Control头。
 
 这种方法不应使用。就当没有这种方法吧。
