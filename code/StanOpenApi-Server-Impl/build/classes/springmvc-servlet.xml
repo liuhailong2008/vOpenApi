@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+          Copyright 2015 Liu Hailong & Liu Yixuan
+          
+               http://blog.csdn.net/stationxp
+                 liuhailong2008@foxmail.com
+
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"   
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+		
+    <context:annotation-config />
+    
+ 	<!-- 设置使用注解的类所在的jar包 -->
+	<context:component-scan base-package="cn.stan.soapi"></context:component-scan>
+	
+    <!-- 完成请求和注解POJO的映射 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+ 
+    <!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->
+    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+    	p:prefix="/jsp/" p:suffix=".jsp" /> 
+	
+<!--
+	
+	<mvc:default-servlet-handler />
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/views"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<mvc:annotation-driven >
+		<mvc:argument-resolvers>
+			<bean class="cn.stan.soapi.oauth.filter.SoapiHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	
+	<bean 
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" /> 
+			<bean class="com.gwssi.optimus.core.web.interceptor.OptimusHandlerInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="simpleMappingExceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="com.gwssi.optimus.exception.OptimusException">/common/error.jsp</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+
+	
+	-->
+</beans>
